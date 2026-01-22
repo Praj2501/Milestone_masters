@@ -1,0 +1,74 @@
+
+{% extends "base.html" %}
+
+{% block title %}Help - How to Use Goal Tracker{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h2>How to Use Goal Tracker</h2>
+                </div>
+                <div class="card-body">
+                    <div class="help-section mb-5">
+                        <h3>Getting Started</h3>
+                        <p>Goal Tracker helps you track your learning goals and daily tasks. Here's how to use the application:</p>
+                        <ol>
+                            <li>Create a new goal with a title, description, start date, and end date</li>
+                            <li>The system will automatically generate daily tasks for your learning journey</li>
+                            <li>Complete tasks daily to build a learning streak</li>
+                            <li>Track your progress on the dashboard</li>
+                        </ol>
+                    </div>
+
+                    <div class="help-section mb-5">
+                        <h3>Dashboard</h3>
+                        <p>The dashboard shows your:</p>
+                        <ul>
+                            <li><strong>Current Streak:</strong> Number of consecutive days with completed tasks</li>
+                            <li><strong>Active Days:</strong> Total number of days with completed tasks</li>
+                            <li><strong>Missing Days:</strong> Number of days with incomplete tasks</li>
+                            <li><strong>Calendar:</strong> Visual representation of your progress</li>
+                            <li><strong>Goals and Tasks:</strong> List of all your goals and associated tasks</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-section mb-5">
+                        <h3>Completing Tasks</h3>
+                        <p>To complete a task:</p>
+                        <ol>
+                            <li>Click on today's date in the calendar or find today's task in your goals list</li>
+                            <li>Check the checkbox next to the task</li>
+                            <li>A validation dialog will appear where you must explain what you've learned</li>
+                            <li>The AI will evaluate your understanding and mark the task as complete if successful</li>
+                        </ol>
+                        <p class="alert alert-info">You can only complete tasks for the current day. This ensures consistent learning practices.</p>
+                    </div>
+
+                    <div class="help-section mb-5">
+                        <h3>Editing Tasks</h3>
+                        <p>You can edit task descriptions by clicking the edit button next to any task. Make your changes and click the save button to update the task.</p>
+                    </div>
+
+                    <div class="help-section mb-5">
+                        <h3>Concept Chat</h3>
+                        <p>Use the Concept Chat feature to discuss learning concepts with the AI assistant. This can help you understand difficult topics or get additional explanations.</p>
+                    </div>
+
+                    <div class="help-section">
+                        <h3>Tips for Success</h3>
+                        <ul>
+                            <li>Complete tasks daily to maintain your streak</li>
+                            <li>Be specific when describing what you've learned during task validation</li>
+                            <li>Use the calendar to plan ahead and track your progress visually</li>
+                            <li>Break down complex learning goals into smaller, manageable pieces</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

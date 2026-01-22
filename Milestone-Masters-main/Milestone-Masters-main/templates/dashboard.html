@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="stats-box">
+                <i data-feather="trending-up" class="mb-3" style="color: #4a90e2;"></i>
+                <h3>Current Streak</h3>
+                <h2>{{ stats.streak }} days</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-box">
+                <i data-feather="check-circle" class="mb-3" style="color: #28a745;"></i>
+                <h3>Active Days</h3>
+                <h2>{{ stats.active_days }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-box">
+                <i data-feather="x-circle" class="mb-3" style="color: #dc3545;"></i>
+                <h3>Missing Days</h3>
+                <h2>{{ stats.missing_days }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">Calendar</h3>
+                </div>
+                <div class="card-body p-2 p-md-3">
+                    <div id="calendar" class="calendar-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Your Goals and Tasks</h2>
+                <a href="{{ url_for('new_goal') }}" class="btn btn-primary">
+                    <i data-feather="plus"></i> Add New Goal
+                </a>
+            </div>
+
+            {% for goal in goals %}
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-0">{{ goal.title }}</h3>
+                        <p class="text-muted mb-0">{{ goal.description }}</p>
+                    </div>
+                    <div>
+                        <form action="{{ url_for('delete_goal', goal_id=goal.id) }}" method="POST" 
+                              class="d-inline" onsubmit="return confirm('Are you sure you want to delete this goal?');">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                <i data-feather="trash-2"></i> Delete Goal
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%">Date</th>
+                                    <th style="width: 65%">Daily Task</th>
+                                    <th style="width: 10%" class="text-center">Status</th>
+                                    <th style="width: 10%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for task in goal.tasks|sort(attribute='date') %}
+                                <tr>
+                                    <td>{{ task.date.strftime('%Y-%m-%d') }}</td>
+                                    <td>
+                                        <div class="task-text">{{ task.description|nl2br }}</div>
+                                        <textarea class="form-control task-edit d-none" 
+                                                 rows="3" data-task-id="{{ task.id }}">{{ task.description }}</textarea>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="form-check d-inline">
+                                            <input type="checkbox" 
+                                                   class="form-check-input task-checkbox" 
+                                                   data-task-id="{{ task.id }}"
+                                                   data-task-date="{{ task.date.strftime('%Y-%m-%d') }}"
+                                                   {% if task.completed %}checked{% endif %}
+                                                   {% if task.date.strftime('%Y-%m-%d') != today_date or task.completed %}disabled{% endif %}>
+                                            {% if task.date.strftime('%Y-%m-%d') == today_date and not task.completed %}
+                                            <span class="small text-primary">(Today's task)</span>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary edit-task-btn"
+                                                data-task-id="{{ task.id }}">
+                                            <i data-feather="edit-2"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success save-task-btn d-none"
+                                                data-task-id="{{ task.id }}">
+                                            <i data-feather="check"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Concept Validation Modal -->
+<div class="modal fade" id="conceptValidationModal" tabindex="-1" aria-labelledby="conceptValidationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="conceptValidationModalLabel">Validate Your Learning</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="task-details mb-3">
+                    <h6>Today's Task:</h6>
+                    <p id="taskDescription" class="mb-3"></p>
+                </div>
+                <div class="chat-container mb-3" id="validationChat">
+                    <div class="bot-message chat-message">
+                        Please explain what you learned from this task. Be specific about:
+                        1. The concepts you understood
+                        2. How you would apply them
+                        3. Any challenges you faced
+                    </div>
+                </div>
+                <div class="input-group">
+                    <textarea class="form-control" id="conceptResponse" 
+                              rows="3" placeholder="Type your explanation here..."></textarea>
+                    <button class="btn btn-primary d-flex align-items-center" id="sendConceptResponse">
+                        <i data-feather="send" class="me-2"></i> Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    feather.replace();
+    const validationModal = new bootstrap.Modal(document.getElementById('conceptValidationModal'));
+    let currentTaskId = null;
+
+    // Task completion handling
+    document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                currentTaskId = this.dataset.taskId;
+                const taskDescription = this.closest('tr').querySelector('.task-text').textContent;
+                document.getElementById('taskDescription').textContent = taskDescription;
+                document.getElementById('validationChat').innerHTML = `
+                    <div class="bot-message chat-message">
+                        Please explain what you learned from this task. Be specific about:
+                        1. The concepts you understood
+                        2. How you would apply them
+                        3. Any challenges you faced
+                    </div>
+                `;
+                // Clear previous response
+                document.getElementById('conceptResponse').value = '';
+                validationModal.show();
+                this.checked = false;
+            }
+        });
+    });
+
+    // Task editing
+    document.querySelectorAll('.edit-task-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const taskId = this.dataset.taskId;
+            const row = this.closest('tr');
+            row.querySelector('.task-text').classList.add('d-none');
+            row.querySelector('.task-edit').classList.remove('d-none');
+            this.classList.add('d-none');
+            row.querySelector('.save-task-btn').classList.remove('d-none');
+        });
+    });
+
+    document.querySelectorAll('.save-task-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const taskId = this.dataset.taskId;
+            const row = this.closest('tr');
+            const newDescription = row.querySelector('.task-edit').value;
+
+            try {
+                const response = await fetch(`/task/update/${taskId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ description: newDescription })
+                });
+
+                if (response.ok) {
+                    row.querySelector('.task-text').innerHTML = newDescription.replace(/\n/g, '<br>');
+                    row.querySelector('.task-text').classList.remove('d-none');
+                    row.querySelector('.task-edit').classList.add('d-none');
+                    this.classList.add('d-none');
+                    row.querySelector('.edit-task-btn').classList.remove('d-none');
+                }
+            } catch (error) {
+                console.error('Error updating task:', error);
+            }
+        });
+    });
+
+    // Concept validation chat
+    document.getElementById('sendConceptResponse').addEventListener('click', async function() {
+        const response = document.getElementById('conceptResponse').value.trim();
+        if (!response) return;
+
+        const chatContainer = document.getElementById('validationChat');
+
+        // Add user message
+        chatContainer.innerHTML += `
+            <div class="user-message chat-message">${response}</div>
+        `;
+
+        try {
+            const result = await fetch(`/validate_concept/${currentTaskId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ response: response })
+            });
+
+            const data = await result.json();
+
+            // Add bot response
+            chatContainer.innerHTML += `
+                <div class="bot-message chat-message">${data.feedback}</div>
+            `;
+
+            if (data.success) {
+                // Mark task as complete
+                document.querySelector(`.task-checkbox[data-task-id="${currentTaskId}"]`).checked = true;
+                setTimeout(() => {
+                    validationModal.hide();
+                }, 2000);
+            }
+
+            // Clear input
+            document.getElementById('conceptResponse').value = '';
+
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        } catch (error) {
+            console.error('Error validating concept:', error);
+            chatContainer.innerHTML += `
+                <div class="bot-message chat-message error">
+                    Sorry, there was an error validating your response. Please try again.
+                </div>
+            `;
+        }
+    });
+
+    // Handle enter key in concept response input (Ctrl+Enter to submit)
+    document.getElementById('conceptResponse').addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'Enter') {
+            document.getElementById('sendConceptResponse').click();
+        }
+    });
+});
+</script>
+{% endblock %}

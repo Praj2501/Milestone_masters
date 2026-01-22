@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Learning Assistant{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">AI Learning Assistant</h3>
+                    <p class="text-muted text-center mb-0">Ask questions about concepts, get learning guidance, or validate your understanding</p>
+                </div>
+                <div class="card-body">
+                    <div class="chat-container" id="chatMessages">
+                        <div class="bot-message chat-message">
+                            Hello! I'm your AI learning assistant. I can help you understand concepts, validate your learning, or answer questions about your goals. How can I help you today?
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="userInput" 
+                               placeholder="Type your message..."
+                               onkeypress="if(event.keyCode==13) sendMessage()">
+                        <button class="btn btn-primary" id="sendButton" onclick="sendMessage()">
+                            <i data-feather="send"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    feather.replace();
+
+    // Focus input field
+    document.getElementById('userInput').focus();
+});
+
+async function sendMessage() {
+    const userInput = document.getElementById('userInput');
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    // Disable input and button while processing
+    const sendButton = document.getElementById('sendButton');
+    userInput.disabled = true;
+    sendButton.disabled = true;
+
+    // Add user message to chat
+    addMessage(message, true);
+    userInput.value = '';
+
+    try {
+        const response = await fetch('/chat/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: message })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            addMessage(data.response, false);
+        } else {
+            addMessage('Sorry, there was an error processing your message: ' + (data.error || 'Unknown error'), false);
+        }
+    } catch (error) {
+        addMessage('Sorry, there was an error connecting to the server.', false);
+    } finally {
+        // Re-enable input and button
+        userInput.disabled = false;
+        sendButton.disabled = false;
+        userInput.focus();
+    }
+}
+
+function addMessage(message, isUser) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${isUser ? 'user-message' : 'bot-message'}`;
+    messageDiv.textContent = message;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+</script>
+{% endblock %}
+{% endblock %}

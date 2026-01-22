@@ -1,0 +1,92 @@
+Day 1: Basic syntax<br>Task: Learn the basics of Basic syntax related to python<br>Practice: Create a simple example demonstrating Basic syntax
+	
+2025-03-04	
+Day 2: Variables and data types<br>Task: Learn the basics of Variables and data types related to python<br>Practice: Create a simple example demonstrating Variables and data types
+	
+2025-03-05	
+Day 3: Control flow<br>Task: Learn the basics of Control flow related to python<br>Practice: Create a simple example demonstrating Control flow
+	
+2025-03-06	
+Day 4: Functions<br>Task: Learn the basics of Functions related to python<br>Practice: Create a simple example demonstrating Functions
+	
+2025-03-07	
+Day 5: Data structures<br>Task: Learn the basics of Data structures related to python<br>Practice: Create a simple example demonstrating Data structures
+	
+2025-03-08	
+Day 6: File handling<br>Task: Learn the basics of File handling related to python<br>Practice: Create a simple example demonstrating File handling
+	
+2025-03-09	
+Day 7: Error handling<br>Task: Learn the basics of Error handling related to python<br>Practice: Create a simple example demonstrating Error handling
+	
+2025-03-10	
+Day 8: Object-oriented programming<br>Task: Learn the basics of Object-oriented programming related to python<br>Practice: Create a simple example demonstrating Object-oriented programming
+	
+2025-03-11	
+Day 9: Modules and packages<br>Task: Learn the basics of Modules and packages related to python<br>Practice: Create a simple example demonstrating Modules and packages
+	
+2025-03-12	
+Day 10: Advanced functions<br>Task: Learn the basics of Advanced functions related to python<br>Practice: Create a simple example demonstrating Advanced functions
+	
+2025-03-13	
+Day 11: Working with APIs<br>Task: Learn the basics of Working with APIs related to python<br>Practice: Create a simple example demonstrating Working with APIs
+	
+2025-03-14	
+Day 12: Testing<br>Task: Learn the basics of Testing related to python<br>Practice: Create a simple example demonstrating Testing
+	
+2025-03-15	
+Day 13: Web frameworks<br>Task: Learn the basics of Web frameworks related to python<br>Practice: Create a simple example demonstrating Web frameworks
+	
+2025-03-16	
+Day 14: Advanced python topic 1<br>Task: Learn the basics of Advanced python topic 1 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 1
+	
+2025-03-17	
+Day 15: Advanced python topic 2<br>Task: Learn the basics of Advanced python topic 2 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 2
+	
+2025-03-18	
+Day 16: Advanced python topic 3<br>Task: Learn the basics of Advanced python topic 3 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 3
+	
+2025-03-19	
+Day 17: Advanced python topic 4<br>Task: Learn the basics of Advanced python topic 4 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 4
+	
+2025-03-20	
+Day 18: Advanced python topic 5<br>Task: Learn the basics of Advanced python topic 5 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 5
+	
+2025-03-21	
+Day 19: Advanced python topic 6<br>Task: Learn the basics of Advanced python topic 6 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 6
+	
+2025-03-22	
+Day 20: Advanced python topic 7<br>Task: Learn the basics of Advanced python topic 7 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 7
+	
+2025-03-23	
+Day 21: Advanced python topic 8<br>Task: Learn the basics of Advanced python topic 8 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 8
+	
+2025-03-24	
+Day 22: Advanced python topic 9<br>Task: Learn the basics of Advanced python topic 9 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 9
+	
+2025-03-25	
+Day 23: Advanced python topic 10<br>Task: Learn the basics of Advanced python topic 10 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 10
+	
+2025-03-26	
+Day 24: Advanced python topic 11<br>Task: Learn the basics of Advanced python topic 11 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 11
+	
+2025-03-27	
+Day 25: Advanced python topic 12<br>Task: Learn the basics of Advanced python topic 12 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 12
+	
+2025-03-28	
+Day 26: Advanced python topic 13<br>Task: Learn the basics of Advanced python topic 13 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 13
+	
+2025-03-29	
+Day 27: Advanced python topic 14<br>Task: Learn the basics of Advanced python topic 14 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 14
+	
+2025-03-30	
+Day 28: Advanced python topic 15<br>Task: Learn the basics of Advanced python topic 15 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 15
+	
+2025-03-31	
+Day 29: Advanced python topic 16<br>Task: Learn the basics of Advanced python topic 16 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 16
+	
+2025-04-01	
+Day 30: Advanced python topic 17<br>Task: Learn the basics of Advanced python topic 17 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 17
+	
+2025-04-02	
+Day 31: Advanced python topic 18<br>Task: Learn the basics of Advanced python topic 18 related to python<br>Practice: Create a simple example demonstrating Advanced python topic 18
+	

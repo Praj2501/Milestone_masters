@@ -1,0 +1,144 @@
+import os
+import json
+import csv
+from datetime import datetime
+from flask import Flask, request, jsonify, render_template, send_file
+import google.generativeai as genai
+from io import StringIO
+
+app = Flask(__name__)
+
+# Set up Google Generative AI with your API key
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "your_api_key_here")
+genai.configure(api_key=GEMINI_API_KEY)
+
+# In-memory storage for schedules (would use a database in production)
+schedules = []
+
+def generate_schedule_with_gemini(start_date, end_date, preferences):
+    """Generate a schedule using Gemini model"""
+    try:
+        # Configure the model (Gemini 1.5 Pro)
+        model = genai.GenerativeModel('gemini-1.5-pro')
+        
+        prompt = f"""
+        Create a daily schedule from {start_date} to {end_date}.
+        
+        Preferences/Focus areas: {preferences}
+        
+        Format the response as a JSON array with each day containing:
+        {{
+          "date": "YYYY-MM-DD",
+          "task": "description of the task",
+          "completed": false
+        }}
+        
+        Only return valid JSON. No explanations or other text.
+        """
+        
+        response = model.generate_content(prompt)
+        response_text = response.text
+        
+        # Try to parse the JSON response
+        try:
+            # First attempt: direct JSON parsing
+            schedule_data = json.loads(response_text)
+            return schedule_data
+        except json.JSONDecodeError:
+            # Second attempt: extract JSON if embedded in text
+            import re
+            json_match = re.search(r'\[[\s\S]*\]', response_text)
+            if json_match:
+                schedule_data = json.loads(json_match.group(0))
+                return schedule_data
+            else:
+                raise ValueError("Could not parse schedule data from AI response")
+                
+    except Exception as e:
+        print(f"Error generating schedule: {str(e)}")
+        raise
+
+@app.route('/')
+def index():
+    """Serve the main page"""
+    return render_template('index.html')
+
+@app.route('/api/generate-schedule', methods=['POST'])
+def create_schedule():
+    """Generate a new schedule based on user input"""
+    try:
+        data = request.json
+        start_date = data.get('startDate')
+        end_date = data.get('endDate')
+        preferences = data.get('preferences', '')
+        
+        if not start_date or not end_date:
+            return jsonify({"error": "Start date and end date are required"}), 400
+        
+        # Generate schedule using Gemini
+        generated_schedule = generate_schedule_with_gemini(start_date, end_date, preferences)
+        
+        # Store the generated schedule
+        global schedules
+        schedules.extend(generated_schedule)
+        
+        return jsonify({"success": True, "schedule": generated_schedule})
+    
+    except Exception as e:
+        return jsonify({"error": "Failed to generate schedule", "details": str(e)}), 500
+
+@app.route('/api/schedules', methods=['GET'])
+def get_schedules():
+    """Get all stored schedules"""
+    return jsonify(schedules)
+
+@app.route('/api/schedules/<date>', methods=['PUT'])
+def update_schedule(date):
+    """Update a schedule item"""
+    try:
+        data = request.json
+        task = data.get('task')
+        completed = data.get('completed')
+        
+        schedule_index = next((i for i, item in enumerate(schedules) if item['date'] == date), None)
+        
+        if schedule_index is None:
+            return jsonify({"error": "Schedule for this date not found"}), 404
+        
+        if task is not None:
+            schedules[schedule_index]['task'] = task
+        
+        if completed is not None:
+            schedules[schedule_index]['completed'] = completed
+        
+        return jsonify({"success": True, "updatedItem": schedules[schedule_index]})
+    
+    except Exception as e:
+        return jsonify({"error": "Failed to update schedule", "details": str(e)}), 500
+
+@app.route('/api/download-csv', methods=['GET'])
+def download_csv():
+    """Download schedules as CSV"""
+    if not schedules:
+        return jsonify({"error": "No schedules to download"}), 404
+    
+    # Create CSV in memory
+    output = StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['Date', 'Task', 'Status'])
+    
+    for item in schedules:
+        status = 'Completed' if item['completed'] else 'Pending'
+        writer.writerow([item['date'], item['task'], status])
+    
+    # Prepare response
+    output.seek(0)
+    return send_file(
+        output, 
+        mimetype='text/csv',
+        as_attachment=True,
+        download_name=f'schedule_{datetime.now().strftime("%Y%m%d")}.csv'
+    )
+
+if __name__ == '__main__':
+    app.run(debug=True)

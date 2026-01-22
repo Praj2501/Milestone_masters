@@ -1,0 +1,91 @@
+Day 1: Basic syntax<br>Objective: Learn Python's indentation rules, comments, and basic operators<br>Task: Apply Basic syntax concepts in Python code<br>Practice: Write a program that prints 'Hello, World!' and calculates simple math expressions
+(Today's task)	
+2025-03-05	
+Day 2: Variables and data types<br>Objective: Understand different data types (int, float, string, bool) and type conversion<br>Task: Apply Variables and data types concepts in Python code<br>Practice: Create variables of different types and perform operations on them
+	
+2025-03-06	
+Day 3: Control flow<br>Objective: Master if-else statements, loops, and conditional expressions<br>Task: Apply Control flow concepts in Python code<br>Practice: Write a program that determines if a number is prime using conditionals and loops
+	
+2025-03-07	
+Day 4: Functions<br>Objective: Create and use functions with parameters, return values, and default arguments<br>Task: Apply Functions concepts in Python code<br>Practice: Create a function to calculate the factorial of a number
+	
+2025-03-08	
+Day 5: Data structures<br>Objective: Work with lists, dictionaries, tuples, and sets<br>Task: Apply Data structures concepts in Python code<br>Practice: Build a contact list using dictionaries with operations to add, remove, and search
+	
+2025-03-09	
+Day 6: File handling<br>Objective: Open, read, write, and close files using different modes<br>Task: Apply File handling concepts in Python code<br>Practice: Create a program that reads a CSV file, processes data, and writes results to a new file
+	
+2025-03-10	
+Day 7: Error handling<br>Objective: Implement try-except blocks to handle exceptions gracefully<br>Task: Apply Error handling concepts in Python code<br>Practice: Write a program that safely divides numbers and handles potential errors
+	
+2025-03-11	
+Day 8: Object-oriented programming<br>Objective: Create classes, objects, inheritance, and use special methods<br>Task: Apply Object-oriented programming concepts in Python code<br>Practice: Design a 'Bank Account' class with methods for deposit, withdrawal, and balance check
+	
+2025-03-12	
+Day 9: Modules and packages<br>Objective: Import and use modules, create your own modules<br>Task: Apply Modules and packages concepts in Python code<br>Practice: Create a module with utility functions and import it in a main script
+	
+2025-03-13	
+Day 10: Advanced functions<br>Objective: Explore higher-order functions, closures, and recursion<br>Task: Apply Advanced functions concepts in Python code<br>Practice: Implement a decorator that times how long a function takes to execute
+	
+2025-03-14	
+Day 11: Working with APIs<br>Objective: Make HTTP requests and parse JSON responses<br>Task: Apply Working with APIs concepts in Python code<br>Practice: Build a weather app that fetches data from a public API
+	
+2025-03-15	
+Day 12: Testing<br>Objective: Write unit tests using pytest or unittest<br>Task: Apply Testing concepts in Python code<br>Practice: Write tests for the 'Bank Account' class created earlier
+	
+2025-03-16	
+Day 13: Web frameworks<br>Objective: Build a simple web application with Flask<br>Task: Apply Web frameworks concepts in Python code<br>Practice: Create a simple Flask application with routes and templates
+	
+2025-03-17	
+Day 14: List comprehensions<br>Objective: Write concise code for creating lists with conditions and transformations<br>Task: Apply List comprehensions concepts in Python code<br>Practice: Convert for loops to list comprehensions in various examples
+	
+2025-03-18	
+Day 15: Decorators<br>Objective: Modify function behavior with decorator functions<br>Task: Apply Decorators concepts in Python code<br>Practice: Create a caching decorator for expensive function calls
+	
+2025-03-19	
+Day 16: Generators and iterators<br>Objective: Create memory-efficient sequences using generator functions<br>Task: Apply Generators and iterators concepts in Python code<br>Practice: Implement a custom range function using generators
+	
+2025-03-20	
+Day 17: Context managers<br>Objective: Implement resource management with context managers<br>Task: Apply Context managers concepts in Python code<br>Practice: Create a custom context manager for file handling
+	
+2025-03-21	
+Day 18: Lambda expressions<br>Objective: Write anonymous functions for simple operations<br>Task: Apply Lambda expressions concepts in Python code<br>Practice: Use lambda functions with map, filter, and sort
+	
+2025-03-22	
+Day 19: Regular expressions<br>Objective: Parse and validate text using regex patterns<br>Task: Apply Regular expressions concepts in Python code<br>Practice: Build an email validator using regex
+	
+2025-03-23	
+Day 20: Python for data analysis<br>Objective: Process data using pandas DataFrames<br>Task: Apply Python for data analysis concepts in Python code<br>Practice: Clean and analyze a sample dataset
+	
+2025-03-24	
+Day 21: Python for automation<br>Objective: Automate tasks with scripts<br>Task: Apply Python for automation concepts in Python code<br>Practice: Create a script that organizes files in a directory by type
+	
+2025-03-25	
+Day 22: Multithreading<br>Objective: Run code concurrently with threads<br>Task: Apply Multithreading concepts in Python code<br>Practice: Build a program that downloads multiple files concurrently
+	
+2025-03-26	
+Day 23: Multiprocessing<br>Objective: Execute tasks in parallel using multiple CPU cores<br>Task: Apply Multiprocessing concepts in Python code<br>Practice: Process a large dataset in parallel
+	
+2025-03-27	
+Day 24: Async programming<br>Objective: Use async/await for non-blocking code execution<br>Task: Apply Async programming concepts in Python code<br>Practice: Create an async web scraper
+	
+2025-03-28	
+Day 25: Working with databases<br>Objective: Connect to SQL databases and execute queries<br>Task: Apply Working with databases concepts in Python code<br>Practice: Build a simple contact management system with SQLite
+	
+2025-03-29	
+Day 26: Web scraping<br>Objective: Extract data from websites using BeautifulSoup or Scrapy<br>Task: Apply Web scraping concepts in Python code<br>Practice: Extract data from a news website
+	
+2025-03-30	
+Day 27: Python socket programming<br>Objective: Create client-server applications<br>Task: Apply Python socket programming concepts in Python code<br>Practice: Create a simple chat application
+	
+2025-03-31	
+Day 28: Building CLI applications<br>Objective: Design command-line interfaces with argparse<br>Task: Apply Building CLI applications concepts in Python code<br>Practice: Build a command-line todo list manager
+	
+2025-04-01	
+Day 29: GUI development with Tkinter<br>Objective: Build desktop applications with Python's built-in GUI toolkit<br>Task: Apply GUI development with Tkinter concepts in Python code<br>Practice: Create a calculator application with GUI
+	
+2025-04-02	
+Day 30: Python with cloud services<br>Objective: Integrate with AWS, Azure, or Google Cloud<br>Task: Apply Python with cloud services concepts in Python code<br>Practice: Upload files to S3 or similar service
+	
+2025-04-03	
+Day 31: Pandas<br>Objective: Analyze and manipulate tabular data efficiently<br>Task: Apply Pandas concepts in Python code<br>Practice: Analyze and visualize real-world dataset
